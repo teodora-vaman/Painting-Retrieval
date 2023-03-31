@@ -10,20 +10,20 @@ O data cu avansarea tehnologiei s-au căutat tehnici automate de *image retrieva
 
 **Scopul final** este realizarea unui sistem de *image retrieval* pe o baza de date cu tablouri artistice. Mai exact, vom avea ca input un tablou care aparține unui curent artistic și vom căuta și returna tablouri ale artiștilor români care se aseamăna cât mai mult în stil și compozitie cu imaginea de la intrare.  
 
-![[Rom_Impress.png]]
-
+![image](https://user-images.githubusercontent.com/86794414/229105165-66693b05-e2e4-47dd-aa34-7bd6b16055e3.png)
 
 ## Specificul bazei de date - Pandora 18K
 
 Pandora 18K contine imagini cu diferite opere de arta impartite in 18 clase si per autor. Ea a fost creata pentru proiectul *Artistic Movement Recognition by Boosted Fusion of Color Structure and Topographic Description* [1] de catre Corneliu Florea și Cosmin Țoca din cadrul laboratorului de Image Processing al Universității Politehnica. Principala sursă a imaginilor a fost *Wikiart*, dar 25% au fost extrase din alte surse. De asemenea, s-a căutat balansarea numărului total de imagin din fiecare clasă. După colectarea imagilor si împărțirea in cele 18 stitluri de artă alese întreaga bază de date a fost analizată de un expert în arte, iar imaginile considerate non-artistice au fost înlăturate. În plus, etichetele multiple au fost înlăturate, doar cele dominante rămânând. 
 O  diferență față de alte baza de date concentrate pe curente artisitice este ca aici un autor nu aparține exclusiv unui curent artistic. Un exemplu este Picasso care a pictat lucrări expresioniste, dar si surealiste sau care aparțin de cubism. [1]
-![[ClaselePandora.png]]
+![image](https://user-images.githubusercontent.com/86794414/229105233-701613e0-00f9-4e4d-a0e6-91e987f296a9.png)
+
 
 Pentru ca in fiecare clasa se afla foldere separate pentru autori primul lucru pe care l-am facut a fost sa unesc toate imaginile astfel incat fiecare clasa sa aiba o grupare de poze. 
-![[numberOfImagesPerClass.png]]
+![image](https://user-images.githubusercontent.com/86794414/229105292-b13d1ae7-bd84-4b43-abf3-ad60ff4c4dca.png)
 
 ## Arhictectura - MobileNet
-![[MobileNEt.png]]
+![image](https://user-images.githubusercontent.com/86794414/229105341-3e2383b3-4892-4aa0-b75e-821f6acd44b8.png)
 
 MobileNet este o rețea covoluțională creată mai mult pentru aplicații mobile, sau aplicații în care puterea de procesare a mai limitată.
 
@@ -34,17 +34,14 @@ MobileNet folosește așa numita "*depthwise separable convolution*". Acestea r
 1. **Depthwise convolution** = aplică un filtru diferit pe fiecare canal de la intrare
 2. **Pointwise convolution** = o convoluție 1x1, de adâncime egala cu numărul de canale, efectuată pentru a modifica dimensiunea ieșirii
 
-![[depthwise.png]]
-
 Diferența majoră dintre MobileNet și o arhitectură CNN clasică este că la un CNN clasic, straturile de batch normalization si ReLu urmează imediat după un strat de convoluție. La MobileNet insă, layerul de convoluție fiind împărțit vom avea de doua ori mai multe straturi de BN si ReLu.
-
-![[Pasted image 20221217161736.png]]
 
 ### MobileNetV2
 
 MobileNetV2 aduce o îmbunătățire față de rețeaua inițială, și anume blocurile de "**inverted residual structure**."
 
-![[Pasted image 20221217162122.png]]
+![image](https://user-images.githubusercontent.com/86794414/229105453-aff5de11-d197-4b90-8d60-240c27f7d6ee.png)
+
 
 ## Libraria - Pytorch
 
@@ -65,19 +62,20 @@ Setul de date a fost împărțit 80% pentru antrenare și 20% pentru testare. Im
 - cu scheduler care v-a modifica rata de învățare cu 0.1 o dată la 10 epoci
 
 Acuratețea și Pierderea la Antrenare:
-![[AccLoss.png]]
+![image](https://user-images.githubusercontent.com/86794414/229105521-950f1838-f748-4701-82e7-81dd277f0ab6.png)
+
 #### Testare
 Acuratetea la test este 46.2347%
 
 Din matricea de confuzie se poate observa că cele mai greu de identificat sunt tablourile in stilurile mai "noi", cum ar fi cubismul, expresionismul, stilul naiv, iar cel mai usor de identificat este stilul byzantin:
-![[Pasted image 20221218114824.png]]
-![[Pasted image 20221218115055.png]]
+![image](https://user-images.githubusercontent.com/86794414/229105641-33a2b46a-2723-4b3d-a7e2-c9d5acfda87c.png)
+
 ### Experiment 2
 - learningRate = 0.01
 - optimizator: Adam
 - batch size = 128
 - cu scheduler care v-a modifica rata de învățare de zece ori o dată la 20 epoci
-![[Pasted image 20221218012318.png]]
+![image](https://user-images.githubusercontent.com/86794414/229105697-29a5438c-0aed-4c6d-9401-f290e4f9828c.png)
 #### Testare
 Acuratetea la test este 29%
 
@@ -87,7 +85,6 @@ Acuratetea la test este 29%
 - optimizator: Adam
 - batch size = 64
 - cu scheduler care v-a modifica rata de învățare de zece ori o dată la 10 epoci
-
 
 
 ### Romanian Painting retrieval 
@@ -110,13 +107,8 @@ Pentru a îmbunătății calitatea sistemului am încercat atât distanța eucli
 
 Rezultate obținute: 
 
-![[Rom_Impress.png]]
-![[Pasted image 20221215160848.png]]
-![[Pasted image 20221215161003.png]]
-![[Pasted image 20221215161939.png]]
-![[Pasted image 20221215162137.png]]
-![[Romantic.png]]
-
+![image](https://user-images.githubusercontent.com/86794414/229105852-df7849a7-4c19-4f40-93be-55a564847895.png)
+![image](https://user-images.githubusercontent.com/86794414/229106108-817d04d5-f0bf-4fe0-9616-49fd75b092ac.png)
 
 
 
@@ -126,15 +118,16 @@ Rezultate obținute:
 În cadrul lucrării "*Artistic movement recognition by boosted fusion of color structure and topographic description*"[1] s-a introdus baza de date Pandora18 și s-au comparat diverse metode pentru recunoașterea curentului artistic. 
 
 Rezultatele obținute cu rețele neuronale adânci sunt următoarele:
-![[tabel4_florea.png]]
+![image](https://user-images.githubusercontent.com/86794414/229105956-ca14741d-5dfd-4041-b32a-8efdd23eeeaf.png)
 
 RR pentru rețeaua MobileNet antrenată în cadrul acestui proiect a fost 46,23%
 
 Matricea de confuzie prezentată în articol:
-![[Pasted image 20221218120944.png]]
+![image](https://user-images.githubusercontent.com/86794414/229105970-1728632b-7268-4870-9a92-65e6910b4433.png)
 
 Matricea de confuzie obținută (cu varianta cea mai buna a retelei):
-![[Pasted image 20221218121451.png]]
+![image](https://user-images.githubusercontent.com/86794414/229106017-78140ae4-95a3-411d-aa57-29cdb7bca7ac.png)
+
 Deși nu am putut întrece acuratețea obținută cu AlexNet, soluția prezentată se apropie destul de mult de performanța aflată pe numărul 2.
 
 # Bibliografie
