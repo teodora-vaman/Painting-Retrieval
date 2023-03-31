@@ -16,10 +16,12 @@ O data cu avansarea tehnologiei s-au căutat tehnici automate de *image retrieva
 
 Pandora 18K contine imagini cu diferite opere de arta impartite in 18 clase si per autor. Ea a fost creata pentru proiectul *Artistic Movement Recognition by Boosted Fusion of Color Structure and Topographic Description* [1] de catre Corneliu Florea și Cosmin Țoca din cadrul laboratorului de Image Processing al Universității Politehnica. Principala sursă a imaginilor a fost *Wikiart*, dar 25% au fost extrase din alte surse. De asemenea, s-a căutat balansarea numărului total de imagin din fiecare clasă. După colectarea imagilor si împărțirea in cele 18 stitluri de artă alese întreaga bază de date a fost analizată de un expert în arte, iar imaginile considerate non-artistice au fost înlăturate. În plus, etichetele multiple au fost înlăturate, doar cele dominante rămânând. 
 O  diferență față de alte baza de date concentrate pe curente artisitice este ca aici un autor nu aparține exclusiv unui curent artistic. Un exemplu este Picasso care a pictat lucrări expresioniste, dar si surealiste sau care aparțin de cubism. [1]
+
 ![image](https://user-images.githubusercontent.com/86794414/229105233-701613e0-00f9-4e4d-a0e6-91e987f296a9.png)
 
 
 Pentru ca in fiecare clasa se afla foldere separate pentru autori primul lucru pe care l-am facut a fost sa unesc toate imaginile astfel incat fiecare clasa sa aiba o grupare de poze. 
+
 ![image](https://user-images.githubusercontent.com/86794414/229105292-b13d1ae7-bd84-4b43-abf3-ad60ff4c4dca.png)
 
 ## Arhictectura - MobileNet
@@ -62,12 +64,14 @@ Setul de date a fost împărțit 80% pentru antrenare și 20% pentru testare. Im
 - cu scheduler care v-a modifica rata de învățare cu 0.1 o dată la 10 epoci
 
 Acuratețea și Pierderea la Antrenare:
+
 ![image](https://user-images.githubusercontent.com/86794414/229105521-950f1838-f748-4701-82e7-81dd277f0ab6.png)
 
 #### Testare
 Acuratetea la test este 46.2347%
 
 Din matricea de confuzie se poate observa că cele mai greu de identificat sunt tablourile in stilurile mai "noi", cum ar fi cubismul, expresionismul, stilul naiv, iar cel mai usor de identificat este stilul byzantin:
+
 ![image](https://user-images.githubusercontent.com/86794414/229105641-33a2b46a-2723-4b3d-a7e2-c9d5acfda87c.png)
 
 ### Experiment 2
@@ -118,14 +122,17 @@ Rezultate obținute:
 În cadrul lucrării "*Artistic movement recognition by boosted fusion of color structure and topographic description*"[1] s-a introdus baza de date Pandora18 și s-au comparat diverse metode pentru recunoașterea curentului artistic. 
 
 Rezultatele obținute cu rețele neuronale adânci sunt următoarele:
+
 ![image](https://user-images.githubusercontent.com/86794414/229105956-ca14741d-5dfd-4041-b32a-8efdd23eeeaf.png)
 
 RR pentru rețeaua MobileNet antrenată în cadrul acestui proiect a fost 46,23%
 
 Matricea de confuzie prezentată în articol:
+
 ![image](https://user-images.githubusercontent.com/86794414/229105970-1728632b-7268-4870-9a92-65e6910b4433.png)
 
 Matricea de confuzie obținută (cu varianta cea mai buna a retelei):
+
 ![image](https://user-images.githubusercontent.com/86794414/229106017-78140ae4-95a3-411d-aa57-29cdb7bca7ac.png)
 
 Deși nu am putut întrece acuratețea obținută cu AlexNet, soluția prezentată se apropie destul de mult de performanța aflată pe numărul 2.
